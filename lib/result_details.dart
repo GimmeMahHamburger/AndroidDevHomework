@@ -6,15 +6,6 @@ class ResultDetails extends StatelessWidget {
 
 
   @override
-  /*Widget build(BuildContext context) {
-    return Column(
-        children:[
-          Text("Exercise name: ${result.exercise.name}"),
-          Text("Exercise target: ${result.exercise.target} ${result.exercise.measure.name}"),
-          Text("And you completed ${result.percent*100} percent of it",style: TextStyle(color: (result.percent>=1.0?Colors.green:Colors.blue)))
-        ]
-    );
-  }*/
   Widget build(BuildContext context) {
     return ExpansionTile(
       title: Text(result.exercise.name),
