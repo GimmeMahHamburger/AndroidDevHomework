@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:homework_1/workout_recording_single.dart';
+//import 'package:homework_1/workout_recording_single.dart';
 import 'data_structures.dart';
 import 'workout_details.dart';
+import 'workout_recording_page.dart';
 
 void main() {
   runApp(WorkoutHistoryPage());
@@ -18,7 +19,7 @@ class WorkoutHistoryPage extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueAccent),
         useMaterial3: true,
       ),
-      home: WorkoutRecordingSingle(ex: DUMMYEXERCISE),
+      home: WorkoutRecordingPage(),
       //home: WorkoutDetails(workout: tempData),
     );
   }
