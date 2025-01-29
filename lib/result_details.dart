@@ -11,7 +11,7 @@ class ResultDetails extends StatelessWidget {
       title: Text(result.exercise.name),
       children:[
         Text("Exercise target: ${result.exercise.target} ${result.exercise.measure.name}"),
-        Text("And you completed ${result.percent*100} percent of it",style: TextStyle(color: (result.percent>=1.0?Colors.green:Colors.blue)))
+        Text("And you completed ${(result.percent*100).toStringAsPrecision(3)} percent of it",style: TextStyle(color: (result.percent>=1.0?Colors.green:Colors.blue)))
       ],
     );
   }

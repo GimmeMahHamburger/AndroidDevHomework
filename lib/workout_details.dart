@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:homework_1/workout_recording_page.dart';
 import 'data_structures.dart';
 import 'result_details.dart';
 
@@ -18,18 +19,13 @@ class WorkoutDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: SafeArea(
-            child: Column(
-                children:[
-                  Text("${workout.collection.length} results in this workout"),
-                  Text("Done on ${workout.date.month}/${workout.date.day}/${workout.date.year}"),
-                  Column(
-                    children: getResultWidget(workout.collection)
-                  )
-                ]
-            )
+    return ExpansionTile(
+      title:Text("${workout.collection.length} exercises done on ${workout.date.month}/${workout.date.day}/${workout.date.year}"),
+      children:[
+        Column(
+          children: getResultWidget(workout.collection)
         )
+      ]
     );
   }
 }
