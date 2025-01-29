@@ -45,7 +45,7 @@ class _WorkoutRecordingPageState extends State<WorkoutRecordingPage> {
                 if(_formKey.currentState!.validate()){
                   Workout temp=context.read<ConstructionCommunicationStorage>().createWorkout(DateTime.now());
                   context.read<WorkoutStorage>().addWorkout(temp);
-                  Navigator.pop(context);
+                  Navigator.pop(context,1);
                 } else {
                   context.read<ConstructionCommunicationStorage>().WipeStorage();
                 }
