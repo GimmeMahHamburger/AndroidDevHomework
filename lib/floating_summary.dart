@@ -40,14 +40,15 @@ class _FloatingSummaryState extends State<FloatingSummary> {
         return SafeArea(
           child:Align(
             alignment:AlignmentDirectional.bottomStart,
-              child:ListenableBuilder(
-                listenable: context.read<WorkoutStorage>(),
-                builder: (BuildContext context, Widget? child) {
-                  final List<Workout> values = context.read<WorkoutStorage>().getWorkouts; // copy the list
-                  return Text("${calcFitness(values)} fitness score");
-                },
-              )
+            child:ListenableBuilder(
+              listenable: context.read<WorkoutStorage>(),
+              builder: (BuildContext context, Widget? child) {
+                final List<Workout> values = context.read<WorkoutStorage>().getWorkouts; // copy the list
+              return Text("${calcFitness(values)} fitness score");
+              },
+            )
           )
+
         );
       }
     );
