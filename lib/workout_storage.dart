@@ -8,7 +8,6 @@ class WorkoutStorage with ChangeNotifier{
   void addWorkout(Workout newWorkout){
     workouts.add(newWorkout);
     notifyListeners();
-    print("updated?");
   }
 
   List<Workout> get getWorkouts{
