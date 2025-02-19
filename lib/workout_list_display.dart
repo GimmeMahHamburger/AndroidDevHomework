@@ -28,13 +28,14 @@ class _WorkoutListDisplayState extends State<WorkoutListDisplay> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar:AppBar(),
       body:SafeArea(
         child:ListView(
           children:[
             Column(
               children:[
 
-                IconButton(
+                /*IconButton(
                   icon: const Icon(Icons.add),
                   onPressed: () async { //necessary to force a rebuild
                     int buffer = await Navigator.of(context).push( //only needs to update once new workouts are made
@@ -47,11 +48,10 @@ class _WorkoutListDisplayState extends State<WorkoutListDisplay> {
                     );
                     setState(() {}); //just reset, force rebuild
                   },
-                ),
+                ),*/
                 ...getWorkoutWidget(context.read<WorkoutStorage>().workouts),
               ]
             ),
-            FloatingSummary(),
           ],
 
         )

@@ -44,7 +44,12 @@ class _FloatingSummaryState extends State<FloatingSummary> {
               listenable: context.read<WorkoutStorage>(),
               builder: (BuildContext context, Widget? child) {
                 final List<Workout> values = context.read<WorkoutStorage>().getWorkouts; // copy the list
-              return Text("${calcFitness(values)} fitness score");
+              return Container(
+                  width:230,
+                  height:30,
+                  color:Colors.blueAccent,
+                child:Text("${calcFitness(values)} fitness score",style: TextStyle(color: Colors.black, fontSize: 20))
+              );
               },
             )
           )
@@ -75,11 +80,11 @@ class _FloatingSummaryState extends State<FloatingSummary> {
     return Align(
       alignment:AlignmentDirectional.bottomStart,
       child:Container(
-        width:100,
+        width:400,
         height:40,
         color:Colors.blueAccent,
         child:IconButton(
-            icon: Text("Summary"),
+            icon: Text("Enable Annoying Overlay"),
             onPressed:(() {
               makeOverlay();
             })
