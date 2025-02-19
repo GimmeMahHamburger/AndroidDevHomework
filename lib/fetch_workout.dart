@@ -2,8 +2,10 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
 
 import 'data_structures.dart';
+import 'workout_plan_storage.dart';
 class FetchWorkout extends StatefulWidget {
   const FetchWorkout({super.key});
 
@@ -14,11 +16,12 @@ class FetchWorkout extends StatefulWidget {
 class _FetchWorkoutState extends State<FetchWorkout> {
   final line=TextEditingController();
   final _formKey = GlobalKey<FormState>();
+
   Exercise parseExercise(Map<String, dynamic> json){
     return Exercise(
       json['name'],
       json['target'],
-      json['unit']
+      Unit.values.firstWhere((e) => e.toString() == 'Unit.' + json['unit'])
     );
   }
 
@@ -31,7 +34,7 @@ class _FetchWorkoutState extends State<FetchWorkout> {
       Map<String, dynamic> tempJson=jsonDecode(response.body) as Map<String, dynamic>;
       WorkoutPlan output = WorkoutPlan(
         tempJson['name'],
-        tempJson['exercises'].map((entry) => parseExercise(entry))
+        tempJson['exercises'].map<Exercise>((entry) => parseExercise(entry)).toList()
       );
       return output;
     } else {
@@ -63,15 +66,17 @@ class _FetchWorkoutState extends State<FetchWorkout> {
                 if (value == null || value.isEmpty) {
                   return 'Please enter some text';
                 }
-
                 return null;
               },
             ),
             IconButton(
               icon:Text("FETCH",style:TextStyle(fontSize:100)),
-              onPressed:(){
+              onPressed:() async {
                 if(_formKey.currentState!.validate()){
-                  print(fetchWorkoutPlan(context, line.text));
+                  WorkoutPlan temp=await fetchWorkoutPlan(context, line.text);
+                  print((await fetchWorkoutPlan(context, line.text)).name);
+                  context.read<WorkoutPlanStorage>().addWorkoutPlan(temp);
+                  Navigator.of(context).pop();
                 }else{
                   print("ay thats not valid, yo");
                 }

@@ -5,7 +5,7 @@ import 'data_structures.dart';
 class WorkoutPlanStorage with ChangeNotifier{
   List<WorkoutPlan> workoutPlans=[tempPlan];
 
-  void addWorkout(WorkoutPlan newWorkout){
+  void addWorkoutPlan(WorkoutPlan newWorkout){
     workoutPlans.add(newWorkout);
     notifyListeners();
   }
