@@ -33,24 +33,7 @@ class _WorkoutListDisplayState extends State<WorkoutListDisplay> {
         child:ListView(
           children:[
             Column(
-              children:[
-
-                /*IconButton(
-                  icon: const Icon(Icons.add),
-                  onPressed: () async { //necessary to force a rebuild
-                    int buffer = await Navigator.of(context).push( //only needs to update once new workouts are made
-                      MaterialPageRoute( //its suspended anyways, i know this is an inelegant solution but i cant figure out the "right" way
-                        builder: (context) => Provider( //idea from https://stackoverflow.com/questions/49804891/force-flutter-navigator-to-reload-state-when-popping
-                            create: (context) => ConstructionCommunicationStorage(),
-                            child:WorkoutRecordingPage(plan:tempPlan)
-                        )
-                      ),
-                    );
-                    setState(() {}); //just reset, force rebuild
-                  },
-                ),*/
-                ...getWorkoutWidget(context.read<WorkoutStorage>().workouts),
-              ]
+              children:[...getWorkoutWidget(context.read<WorkoutStorage>().workouts)]
             ),
           ],
 

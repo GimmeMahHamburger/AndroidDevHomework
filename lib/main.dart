@@ -27,7 +27,7 @@ class WorkoutHistoryPage extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueAccent),
             useMaterial3: true,
           ),
-          home:HomePage()//WorkoutListDisplay()
+          home:HomePage()
         )
       )
     );

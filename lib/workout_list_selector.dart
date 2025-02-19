@@ -38,11 +38,14 @@ class _PlanSelectorButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width:100,
+      width:400,
       height:100,
-      color:Colors.red,
+        decoration: BoxDecoration(
+            color:Colors.red,
+            border: Border.all(color: Colors.black, width:8)
+        ),
       child:IconButton(
-        icon:Text("${plan.name} is da naem",style: TextStyle(color: Colors.white60, fontSize: 30)),
+        icon:Text("Fill out new ${plan.name}",style: TextStyle(color: Colors.white60, fontSize: 25)),
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(

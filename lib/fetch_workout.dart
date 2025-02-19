@@ -12,6 +12,7 @@ class FetchWorkout extends StatefulWidget {
 }
 
 class _FetchWorkoutState extends State<FetchWorkout> {
+  final line=TextEditingController();
   final _formKey = GlobalKey<FormState>();
   Exercise parseExercise(Map<String, dynamic> json){
     return Exercise(
@@ -41,11 +42,23 @@ class _FetchWorkoutState extends State<FetchWorkout> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar:AppBar(),
       body:Form(
         key:_formKey,
         child:Column(
           children:[
+            Container(
+            width:400,
+            height:100,
+            decoration: BoxDecoration(
+              color:Colors.red,
+              border: Border.all(color: Colors.black, width:8)
+            ),
+              child:Text("Gimme a URL (plz)",style:TextStyle(fontSize:40,))
+            ),
             TextFormField(
+              decoration:InputDecoration(labelText:"Enter here"),
+              controller:line,
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Please enter some text';
@@ -54,6 +67,16 @@ class _FetchWorkoutState extends State<FetchWorkout> {
                 return null;
               },
             ),
+            IconButton(
+              icon:Text("FETCH",style:TextStyle(fontSize:100)),
+              onPressed:(){
+                if(_formKey.currentState!.validate()){
+                  print(fetchWorkoutPlan(context, line.text));
+                }else{
+                  print("ay thats not valid, yo");
+                }
+              }
+            )
           ]
         )
       )
