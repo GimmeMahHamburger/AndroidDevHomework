@@ -51,7 +51,7 @@ class _PlanSelectorButton extends StatelessWidget {
             MaterialPageRoute(
               builder: (context) => Provider(
                 create: (context) => ConstructionCommunicationStorage(),
-                child: WorkoutRecordingPage(plan: tempPlan)
+                child: WorkoutRecordingPage(plan: plan)
               )
             ),
           );
