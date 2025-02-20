@@ -3,6 +3,19 @@ allprojects {
         google()
         mavenCentral()
     }
+    //additional shit taken from https://stackoverflow.com/questions/78744324/could-not-create-an-instance-of-type-com-android-build-api-variant-impl-libraryv
+    subprojects {
+        afterEvaluate { project ->
+            if (project.hasProperty('android')) {
+                project.android {
+                    if (namespace == null) {
+                        namespace project.group
+                    }
+                }
+            }
+        }
+    }
+    //end addititional shit
 }
 
 rootProject.buildDir = "../build"

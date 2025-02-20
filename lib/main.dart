@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'home_page.dart';
 import 'workout_plan_storage.dart';
 void main() {
+  WidgetsFlutterBinding.ensureInitialized(); //the debugger was yelling at me so i put this here and it stopped
   runApp(WorkoutHistoryPage());
 }
 
