@@ -33,7 +33,7 @@ class _WorkoutListDisplayState extends State<WorkoutListDisplay> {
         child:ListView(
           children:[
             Column(
-              children:[...getWorkoutWidget(context.read<WorkoutStorage>().workouts)]
+              children:[...getWorkoutWidget(context.read<WorkoutStorage>().getWorkouts)]
             ),
           ],
 
@@ -75,7 +75,7 @@ class WorkoutListDisplay2 extends StatelessWidget {
                 );
               },
             ),
-            ...getWorkoutWidget(context.read<WorkoutStorage>().workouts),
+            ...getWorkoutWidget(context.read<WorkoutStorage>().getWorkouts),
           ]
         )
       )

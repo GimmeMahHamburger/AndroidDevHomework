@@ -2,10 +2,6 @@ import 'package:isar/isar.dart';
 import 'data_structures.dart';
 part 'isar_structures.g.dart';
 
-
-//enum Unit {seconds, repetitions, meters}
-
-
 @embedded
 @Name("Exercise")
 class IExercise {

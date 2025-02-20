@@ -7,7 +7,6 @@ import 'isar_structures.dart';
 
 class WorkoutStorage with ChangeNotifier{
   late Isar db;
-  List<Workout> workouts=[tempData];
   static Future<WorkoutStorage> create() async{
 
     final dir = await getApplicationDocumentsDirectory();
@@ -21,7 +20,6 @@ class WorkoutStorage with ChangeNotifier{
     db.writeTxnSync(() {
       db.iWorkouts.putSync(toIWorkout(newWorkout));
     });
-    workouts.add(newWorkout);
     notifyListeners();
   }
 
@@ -30,11 +28,9 @@ class WorkoutStorage with ChangeNotifier{
     for(IWorkout w in db.iWorkouts.where().findAllSync()){
       out.add(toWorkout(w));
     }
-    //List<Workout> out = List<Workout>.from(workouts); //I believe a shallow copy is all i need
-    return out; //to expose the member variable list
+    return out;
   }
   WorkoutStorage._create(Isar input){
     db=input;
   }
-  //WorkoutStorage(Workout input):_workouts=[input];
 }
