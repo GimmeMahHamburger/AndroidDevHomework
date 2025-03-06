@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:homework_1/fetch_workout.dart';
+import 'package:homework_1/workout_type_selector.dart';
 import 'package:provider/provider.dart';
 
 import 'floating_summary.dart';
@@ -25,11 +26,11 @@ class HomePage extends StatelessWidget {
                 );
               }
             ),
-            IconButton(icon: const Text("Fill out new Workout List"),
+            IconButton(icon: const Text("Fill out new Workout"),
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                      builder: (context) => WorkoutListSelector()
+                      builder: (context) => WorkoutTypeSelector()
                   )
                 );
               }
