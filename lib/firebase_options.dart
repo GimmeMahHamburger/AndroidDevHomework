@@ -73,4 +73,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'androiddevhomework.firebasestorage.app',
     measurementId: 'G-F71ED920PZ',
   );
+
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:homework_1/collaborative_workout_selector.dart';
+import 'package:homework_1/cooperative_workout_selector.dart';
 import 'package:homework_1/workout_list_selector.dart';
 
 class WorkoutTypeSelector extends StatelessWidget {
@@ -34,7 +35,7 @@ class WorkoutTypeSelector extends StatelessWidget {
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => Placeholder()
+                    builder: (context) => CooperativeWorkoutSelector()
                   )
                 );
               }

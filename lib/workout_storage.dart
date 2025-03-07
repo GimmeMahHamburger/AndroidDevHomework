@@ -4,19 +4,18 @@ import 'package:isar/isar.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'data_structures.dart';
+import 'fake_firebase.dart';
 import 'isar_structures.dart';
 import 'package:firebase_database/firebase_database.dart';
 
 class WorkoutStorage with ChangeNotifier{
   late Isar? db;
+  late Isar? fb;
   FirebaseFirestore? _firebase;
-  late bool collab;
+  bool collab=false;
+  bool useFB=false;
+  String? currentName;
 
-  static WorkoutStorage createFB({bool isCollab=false}){
-    WorkoutStorage output = WorkoutStorage._createFB();
-    output._firebase=FirebaseFirestore.instance;
-    return output;
-  }
 
   static Future<WorkoutStorage> create() async{
 
@@ -25,17 +24,26 @@ class WorkoutStorage with ChangeNotifier{
       [IWorkoutSchema],
       directory:dir.path
     );
-    return WorkoutStorage._create(isar);
+    final fakeFB = await Isar.open(
+      [FWorkoutSchema],
+      directory:dir.path
+    );
+    WorkoutStorage output=WorkoutStorage._create(isar, fakeFB);
+    output._firebase=FirebaseFirestore.instance;
+    return output;
   }
-  void addWorkout(Workout newWorkout){
-    if(db!=null){
+  void addWorkout(Workout newWorkout) async{
+    if(!useFB) {
       db!.writeTxnSync(() {
         db!.iWorkouts.putSync(toIWorkout(newWorkout));
       });
+    } else {
+      fb!.writeTxnSync((){
+        fb!.fWorkouts.putSync(toFWorkout(newWorkout, currentName!));
+      });
     }
-    if(_firebase!=null){
 
-    }
+
 
     notifyListeners();
   }
@@ -47,10 +55,20 @@ class WorkoutStorage with ChangeNotifier{
     }
     return out;
   }
-  WorkoutStorage._create(Isar input){
+  WorkoutStorage._create(Isar input,Isar fbInput){
     db=input;
+    fb=fbInput;
   }
-  WorkoutStorage._createFB(){
-
+  void forceUseFB(){
+    useFB=true;
+  }
+  void forceUseIsar(){
+    useFB=false;
+  }
+  void forceCollab(){
+    collab=true;
+  }
+  void forceCoop(){
+    collab=false;
   }
 }

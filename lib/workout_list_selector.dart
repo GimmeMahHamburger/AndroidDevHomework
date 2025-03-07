@@ -5,6 +5,7 @@ import 'construction_communication_storage.dart';
 import 'data_structures.dart';
 import 'workout_plan_storage.dart';
 import 'workout_recording_page.dart';
+import 'workout_storage.dart';
 
 class WorkoutListSelector extends StatelessWidget {
   const WorkoutListSelector({super.key});
@@ -20,7 +21,15 @@ class WorkoutListSelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:AppBar(),
+      appBar:AppBar( //from https://stackoverflow.com/questions/51508257/how-to-change-the-appbar-back-button-color
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () {
+            context.read<WorkoutStorage>().forceUseIsar();
+            Navigator.of(context).pop();
+          },
+        ),
+      ),
       body:Column(
         children: [
           ...getWorkoutPlanWidget(context.read<WorkoutPlanStorage>().workoutPlans)

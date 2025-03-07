@@ -1,3 +1,4 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:homework_1/workout_storage.dart';
 import 'package:provider/provider.dart';
@@ -7,12 +8,30 @@ import 'workout_plan_storage.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 void main() async{
-  WidgetsFlutterBinding.ensureInitialized(); //the debugger was yelling at me so i put this here and it stopped
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  try {
+    final userCredential =
+    await FirebaseAuth.instance.signInAnonymously();
+    print("Signed in with temporary account.");
+  } on FirebaseAuthException catch (e) {
+    switch (e.code) {
+      case "operation-not-allowed":
+        print("Anonymous auth hasn't been enabled for this project.");
+        break;
+      default:
+        print("Unknown error.");
+    }
+  }
+
+
+
   runApp(WorkoutHistoryPage());
 }
 
